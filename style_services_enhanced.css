@@ -1,0 +1,193 @@
+/* style_services_enhanced.css */
+
+/* Style pour les services avec background image */
+ul#services li {
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important; /* Supprime le padding original */
+    height: 350px; /* Hauteur fixe pour tous les services */
+}
+
+.service-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+
+ul#services li:hover .service-background {
+    transform: scale(1.05);
+}
+
+/* Overlay sombre pour améliorer la lisibilité */
+.service-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 2;
+}
+
+/* Contenu du service */
+.service-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+}
+
+.service-content h3 {
+    color: white !important;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    min-height: auto; /* Supprime la hauteur minimale fixe */
+}
+
+/* Conteneur pour le texte */
+.text-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.service-text {
+    line-height: 1.5;
+    margin: 0;
+    transition: max-height 0.5s ease;
+    max-height: 72px; /* 3 lignes environ (1.5 * 1.6 * 3) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* État étendu */
+ul#services li.expanded .service-text {
+    max-height: 500px !important;
+    -webkit-line-clamp: unset !important;
+    overflow-y: auto !important;
+}
+
+/* Style du bouton Voir plus */
+.voir-plus {
+    background: #e8491d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-start;
+    margin-top: auto;
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 4;
+    position: relative;
+}
+
+.voir-plus:hover {
+    background: #d63c10;
+    transform: translateY(-2px);
+}
+
+/* État du bouton quand le texte est étendu */
+ul#services li.expanded .voir-plus {
+    background: #35424a;
+}
+
+/* Ajout d'une icône au bouton */
+.voir-plus::after {
+    content: ' ▼';
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+
+ul#services li.expanded .voir-plus::after {
+    content: ' ▲';
+    transform: rotate(180deg);
+}
+
+/* Indicateur visuel qu'il y a plus de contenu */
+.text-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+    opacity: 1;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+ul#services li.expanded .text-wrapper::after {
+    opacity: 0;
+}
+
+/* Scrollbar pour le texte étendu */
+ul#services li.expanded .service-text::-webkit-scrollbar {
+    width: 5px;
+}
+
+ul#services li.expanded .service-text::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+ul#services li.expanded .service-text::-webkit-scrollbar-thumb {
+    background: #e8491d;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    ul#services li {
+        height: 300px;
+        width: 85%;
+    }
+    
+    .service-content {
+        padding: 15px;
+    }
+    
+    .service-text {
+        font-size: 14px;
+        max-height: 63px; /* 3 lignes sur mobile */
+    }
+    
+    .voir-plus {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Animation pour l'expansion */
+@keyframes expandText {
+    from {
+        max-height: 72px;
+    }
+    to {
+        max-height: 500px;
+    }
+}

@@ -1,0 +1,111 @@
+/* style_services_toggle.css */
+
+/* Solution sans JavaScript : utilisation de checkbox cachée */
+
+/* Cachez la checkbox */
+.service-toggle {
+    display: none;
+}
+
+/* Modifiez le bouton Voir plus pour qu'il soit un label */
+.voir-plus {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Quand la checkbox est cochée, étendre le texte */
+.service-toggle:checked ~ .service-content .service-text {
+    max-height: 500px !important;
+    -webkit-line-clamp: unset !important;
+    overflow-y: auto !important;
+}
+
+.service-toggle:checked ~ .service-content .text-wrapper::after {
+    opacity: 0;
+}
+
+.service-toggle:checked ~ .service-content .voir-plus {
+    background: #35424a;
+}
+
+.service-toggle:checked ~ .service-content .voir-plus::after {
+    content: ' ▲';
+}
+
+/* Alternative : utiliser l'état :target */
+.service-content:target .service-text {
+    max-height: 500px !important;
+    -webkit-line-clamp: unset !important;
+    overflow-y: auto !important;
+}
+
+.service-content:target .text-wrapper::after {
+    opacity: 0;
+}
+
+.service-content:target .voir-plus {
+    background: #35424a;
+}
+
+.service-content:target .voir-plus::after {
+    content: ' ▲';
+}
+/* style_services_toggle.css */
+
+/* Cache la checkbox */
+.service-toggle {
+    display: none;
+}
+
+/* Cache "Voir moins" par défaut */
+.voir-moins-text {
+    display: none;
+}
+
+/* Quand la checkbox est cochée : */
+/* 1. Afficher "Voir moins" et cacher "Voir plus" */
+.service-toggle:checked ~ .service-content .voir-plus-text {
+    display: none;
+}
+
+.service-toggle:checked ~ .service-content .voir-moins-text {
+    display: inline;
+}
+
+/* 2. Étendre le texte */
+.service-toggle:checked ~ .service-content .service-text {
+    max-height: 500px !important;
+    -webkit-line-clamp: unset !important;
+    overflow-y: auto !important;
+    -webkit-line-clamp: unset;
+    display: block;
+}
+
+/* 3. Cacher le gradient d'ombre */
+.service-toggle:checked ~ .service-content .text-wrapper::after {
+    opacity: 0;
+}
+
+/* 4. Changer la couleur du bouton */
+.service-toggle:checked ~ .service-content .voir-plus {
+    background: #35424a;
+}
+
+/* Style du label bouton */
+.voir-plus {
+    background: #e8491d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.voir-plus:hover {
+    background: #d63c10;
+}
