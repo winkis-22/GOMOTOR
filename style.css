@@ -92,9 +92,28 @@ header a:hover {
 /* Showcase */
 #showcase {
   min-height: 400px;
-  background: url('img.png') no-repeat center / cover;
   text-align: center;
   color: #ffffff;
+}
+
+/* Style minimal et élégant */
+#showcase .container img {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#showcase {
+    background: #35424a;
+    padding: 40px 0;
+}
+
+#showcase .container {
+    text-align: center;
 }
 
 #showcase h1 {
